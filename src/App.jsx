@@ -1,16 +1,22 @@
 import { useState } from "react";
+import './components/Game.css'
 import HomePagina from "./components/HomePagina";
 import CapturePagina from "./components/CapturePagina";
+import GamePagina from "./components/GamePagina";
+import FinalPagina from "./components/FinalPagina";
+import SeeAnswers from "./components/SeeAnswers";
 
 function App() {
 
   const [pagina, setPagina] = useState('Home')
+  const [puntuacion, setPuntuacion] = useState(0);
 
   const [listQuestions, setListQuestions] = useState(
-    JSON.parse(localStorage.getItem("listQuestions")) ||[]
-    )
+    JSON.parse(localStorage.getItem("listQuestions")) || []
+  )
 
   return (
+
     <div className="container mt-2">
 
       {
@@ -39,17 +45,37 @@ function App() {
 
         pagina === 'Game' && (
           <div>
-            <h1>Game</h1>
-            <button
-              type="button"
-              class="btn btn-success"
-              onClick={() => setPagina('Home')}
-              style={{
-                padding: "14px 20px",
-                border: "none",
-                width: "100%",
-              }}
-            >Home</button>
+            <GamePagina
+              pagina={pagina}
+              setPagina={setPagina}
+              listQuestions={listQuestions}
+              puntuacion={puntuacion}
+              setPuntuacion={setPuntuacion}
+            />
+          </div>
+        )
+      }
+
+      {
+        pagina === 'Finish' && (
+          <div>
+            <FinalPagina
+              setPagina={setPagina}
+              listQuestions={listQuestions}
+              puntuacion={puntuacion}
+              setPuntuacion={setPuntuacion}
+            />
+          </div>
+        )
+      }
+
+      {
+        pagina === 'Answers' && (
+          <div>
+            <SeeAnswers
+              setPagina={setPagina}
+              listQuestions={listQuestions}
+            />
           </div>
         )
       }

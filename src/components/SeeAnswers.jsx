@@ -8,11 +8,13 @@ const SeeAnswers = ({ setPagina, listQuestions }) => {
     const handleVerity = () => {
         if (preguntaActual === listQuestions.length - 1) {
             setFinal(true);
-            setPagina('Game');
+            setPagina('Finish');
         } else {
             setPreguntaActual(preguntaActual + 1);
         }
     }
+
+
 
     return (
         <div className='game-container my-component'>
@@ -28,6 +30,7 @@ const SeeAnswers = ({ setPagina, listQuestions }) => {
                     <div>
                         {listQuestions[preguntaActual].answerTrue}
                     </div>
+                    
                     <button type="button" onClick={() => handleVerity()}>
                         Continue
                     </button>
